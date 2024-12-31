@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { UsersComponent } from './modules/users/users.component';
+import { HomeLayoutComponent } from './layout/home/home.layout.component';
 
 @NgModule({
     imports: [
@@ -10,7 +11,13 @@ import { UsersComponent } from './modules/users/users.component';
             [
                 {
                     path: 'user',
-                    component: UsersComponent
+                    component: HomeLayoutComponent,
+                    children: [
+                        {
+                            path: '',
+                            component: UsersComponent
+                        },
+                    ],
                 },
                 {
                     path: '',

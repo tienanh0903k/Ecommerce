@@ -1,0 +1,6 @@
+<button type="button" label="Mở Dialog" icon="pi pi-external-link" (click)="openDialog()"></button>
+<ng-template #template>
+    <p-dialog header="Header" [(visible)]="display" [modal]="true" [closable]="true" [responsive]="true" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <p>Content</p>
+    </p-dialog>
+</ng-template>
