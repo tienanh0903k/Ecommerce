@@ -1,0 +1,44 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Angular build output
+dist/
+out-tsc/
+
+# IDE specific files
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Coverage reports
+coverage/
+
+# Dependency directories
+jspm_packages/
+
+# Compiled files
+*.dll
+*.exe
+*.so
+*.dylib
+
+# TypeScript compiled files
+*.js
+*.js.map
+
+# Angular specific files
+.angular/
