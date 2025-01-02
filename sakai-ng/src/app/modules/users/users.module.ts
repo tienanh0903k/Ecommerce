@@ -10,10 +10,12 @@ import { HeaderComponent } from 'src/app/shared/components/header/header.compone
 import { HomeLayoutComponent } from 'src/app/layout/user/home/home.layout.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { PrimeNgModule } from 'src/app/shared/prime-ng/prime-ng.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [UsersComponent, LoginComponent, HeaderComponent, HomeLayoutComponent],
-    imports: [CommonModule, UsersRoutingModule ,PrimeNgModule],
+    imports: [CommonModule, UsersRoutingModule, HttpClientModule ,PrimeNgModule],
+    providers: [],
     // exports: [UsersComponent, LoginComponent, HeaderComponent],
 })
 export class UsersModule {}

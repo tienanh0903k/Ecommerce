@@ -1,0 +1,39 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Sherry Lace Dress",
+            "price": 29.99,
+            "image": "https://guess.com.ph/sites/default/files/item/MWDNTN005PRH/MWDNTN005PRH-1.jpg",
+            "description": "Description of Product 1"
+        },
+        {
+            "id": 2,
+            "name": "Product 2",
+            "price": 49.99,
+            "image": "https://via.placeholder.com/150?text=Product+2",
+            "description": "Description of Product 2"
+        },
+        {
+            "id": 3,
+            "name": "Product 3",
+            "price": 19.99,
+            "image": "https://via.placeholder.com/150?text=Product+3",
+            "description": "Description of Product 3"
+        },
+        {
+            "id": 4,
+            "name": "Product 4",
+            "price": 99.99,
+            "image": "https://via.placeholder.com/150?text=Product+4",
+            "description": "Description of Product 4"
+        },
+        {
+            "id": 5,
+            "name": "Product 5",
+            "price": 9.99,
+            "image": "https://via.placeholder.com/150?text=Product+5",
+            "description": "Description of Product 5"
+        }
+    ]
+}
