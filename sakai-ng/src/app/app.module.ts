@@ -14,12 +14,14 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
-import { HomeLayoutComponent } from './layout/home/home.layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UsersModule } from './modules/users/users.module';
 @NgModule({
-    declarations: [AppComponent, NotfoundComponent, HomeLayoutComponent],
-    imports: [AppRoutingModule, AppLayoutModule, ReactiveFormsModule, UsersModule],
+    declarations: [
+        AppComponent,
+        NotfoundComponent
+
+    ],
+    imports: [AppRoutingModule, AppLayoutModule, ReactiveFormsModule],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService,

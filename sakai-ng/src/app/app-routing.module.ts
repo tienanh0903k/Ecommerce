@@ -10,17 +10,22 @@ import { HomeLayoutComponent } from './layout/home/home.layout.component';
         RouterModule.forRoot(
             [
                 {
-                    path: 'user',
-                    component: HomeLayoutComponent,
-                    children: [
-                        {
-                            path: '',
-                            component: UsersComponent
-                        },
-                    ],
+                    // path: 'user',
+                    // component: HomeLayoutComponent,
+                    // children: [
+                    //     {
+                    //         path: '',
+                    //         component: UsersComponent
+                    //     },
+                    // ],
+                    path: '',
+                    loadChildren: () =>
+                        import('./modules/users/users.module').then(
+                            (m) => m.UsersModule
+                        ),
                 },
                 {
-                    path: '',
+                    path: 'admin',
                     component: AppLayoutComponent,
                     children: [
                         {
