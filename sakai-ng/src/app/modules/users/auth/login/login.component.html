@@ -1,16 +1,15 @@
-<!-- Nút mở Dialog -->
-<button pButton type="button" label="Open Login Modal" (click)="openDialog()"></button>
-
-<!-- PrimeNG Dialog -->
 <p-dialog [(visible)]="display" header="Login" [modal]="true" [closable]="true" [resizable]="false" [draggable]="false" [style]="{width: '30vw'}">
-  <div class="p-fluid">
-    <div class="p-field">
-      <label for="username">Username</label>
-      <input id="username" type="text" pInputText />
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="username">Username</label>
+        <input id="username" type="text" pInputText />
+      </div>
+      <div class="p-field">
+        <label for="password">Password</label>
+        <input id="password" type="password" pInputText />
+      </div>
+      <div class="p-field">
+        <button pButton type="button" label="Login" icon="pi pi-check" class="p-button" style="width: 100%;"></button>
+      </div>
     </div>
-    <div class="p-field">
-      <label for="password">Password</label>
-      <input id="password" type="password" pInputText />
-    </div>
-  </div>
-</p-dialog>
+  </p-dialog>

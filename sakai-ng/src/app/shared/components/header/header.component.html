@@ -11,10 +11,12 @@
             1
         </span>
       </button>
-      <button pButton label="Login" icon="pi pi-user" class="p-button-text"></button>
-      <button pButton label="Sign Up" icon="pi pi-user-plus" class="p-button-text"></button>
+      <button pButton label="Login" icon="pi pi-user" class="p-button-text" (click)="toggleLogin()"></button>
+        <button pButton label="Sign Up" icon="pi pi-user-plus" class="p-button-text"></button>
     </div>
 </p-toolbar>
+
+<app-login [display]="display"></app-login>
 
 <p-carousel
     [value]="images"
