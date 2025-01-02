@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { UsersComponent } from './modules/users/users.component';
-import { HomeLayoutComponent } from './layout/home/home.layout.component';
+import { HomeLayoutComponent } from './layout/user/home/home.layout.component';
 
 @NgModule({
     imports: [
