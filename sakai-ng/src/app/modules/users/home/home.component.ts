@@ -1,48 +1,25 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { HomeService } from '../service/home.service';
+import { LoginComponent } from '../auth/login/login.component';
 
 @Component({
     selector: 'app-home',
-    standalone: true,
-    imports: [NgFor, ButtonModule],
+    // standalone: true,
+    // imports: [NgFor, ButtonModule],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-    products = [
-        {
-            id: 1,
-            name: 'Product 1',
-            price: 29.99,
-            image: 'https://via.placeholder.com/150?text=Product+1',
-        },
-        {
-            id: 2,
-            name: 'Product 2',
-            price: 49.99,
-            image: 'https://via.placeholder.com/150?text=Product+2',
-        },
-        {
-            id: 3,
-            name: 'Product 3',
-            price: 19.99,
-            image: 'https://via.placeholder.com/150?text=Product+3',
-        },
-        {
-            id: 4,
-            name: 'Product 4',
-            price: 19.99,
-            image: 'https://via.placeholder.com/150?text=Product+3',
-        },
-    ];
-    constructor() {
-        console.log('Home Component initialized');
-        console.log(this.products);
+    products: any[] = [];
 
-     }
+    constructor(private homeService: HomeService) {}
 
-    onInit() {
-        console.log(this.products);
+    ngOnInit() {
+        this.homeService.getProduct().subscribe((products) => {
+            console.log('Products from API:', products);
+            this.products = products;
+        });
     }
 }

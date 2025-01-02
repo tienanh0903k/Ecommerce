@@ -2,28 +2,21 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
-import { UsersComponent } from './modules/users/users.component';
-import { HomeLayoutComponent } from './layout/user/home/home.layout.component';
 
 @NgModule({
     imports: [
         RouterModule.forRoot(
             [
+                // Route chính cho người dùng
                 {
-                    // path: 'user',
-                    // component: HomeLayoutComponent,
-                    // children: [
-                    //     {
-                    //         path: '',
-                    //         component: UsersComponent
-                    //     },
-                    // ],
                     path: '',
                     loadChildren: () =>
                         import('./modules/users/users.module').then(
                             (m) => m.UsersModule
                         ),
                 },
+
+                // Route chính cho admin
                 {
                     path: 'admin',
                     component: AppLayoutComponent,
@@ -72,6 +65,8 @@ import { HomeLayoutComponent } from './layout/user/home/home.layout.component';
                         },
                     ],
                 },
+
+                // Route cho auth (đăng nhập, đăng ký)
                 {
                     path: 'auth',
                     loadChildren: () =>
@@ -79,6 +74,8 @@ import { HomeLayoutComponent } from './layout/user/home/home.layout.component';
                             (m) => m.AuthModule
                         ),
                 },
+
+                // Route cho landing page
                 {
                     path: 'landing',
                     loadChildren: () =>
@@ -86,25 +83,23 @@ import { HomeLayoutComponent } from './layout/user/home/home.layout.component';
                             (m) => m.LandingModule
                         ),
                 },
-                { path: 'notfound', component: NotfoundComponent },
-                { path: '**', redirectTo: '/notfound' },
+
+                // Route NotFound
                 {
-                    path: 'admin',
-                    children: [
-                        {
-                            path: 'dahsboard',
-                            loadChildren: () =>
-                                import('./modules/admin/admin.module').then(
-                                    (m) => m.AdminModule
-                                ),
-                        },
-                    ],
+                    path: 'notfound',
+                    component: NotfoundComponent,
+                },
+
+                // Wildcard Route - chuyển hướng đến NotFound
+                {
+                    path: '**',
+                    redirectTo: 'notfound',
                 },
             ],
             {
-                scrollPositionRestoration: 'enabled',
-                anchorScrolling: 'enabled',
-                onSameUrlNavigation: 'reload',
+                scrollPositionRestoration: 'enabled', // Giữ lại vị trí cuộn
+                anchorScrolling: 'enabled',          // Kích hoạt cuộn đến anchor
+                onSameUrlNavigation: 'reload',       // Tải lại nếu truy cập cùng URL
             }
         ),
     ],

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UsersComponent } from './users.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -11,11 +11,17 @@ import { HomeLayoutComponent } from 'src/app/layout/user/home/home.layout.compon
 import { ToolbarModule } from 'primeng/toolbar';
 import { PrimeNgModule } from 'src/app/shared/prime-ng/prime-ng.module';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-    declarations: [UsersComponent, LoginComponent, HeaderComponent, HomeLayoutComponent],
+    declarations: [UsersComponent,
+        LoginComponent, HeaderComponent,
+        HomeLayoutComponent,
+        HomeComponent],
     imports: [CommonModule, UsersRoutingModule, HttpClientModule ,PrimeNgModule],
     providers: [],
-    // exports: [UsersComponent, LoginComponent, HeaderComponent],
+    //  schemas: [
+    //         CUSTOM_ELEMENTS_SCHEMA
+    //     ],
 })
 export class UsersModule {}

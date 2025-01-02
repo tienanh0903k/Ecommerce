@@ -3,6 +3,7 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
+//   standalone: true,
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
