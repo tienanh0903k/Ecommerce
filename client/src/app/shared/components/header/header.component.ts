@@ -40,6 +40,10 @@ export class HeaderComponent {
     ngOnInit(): void {
         this.currentUser = this.authService.getCurrentUser();
     }
+
+    handleLoginSuccess(): void {
+        this.currentUser = this.authService.getCurrentUser();
+    }
     // openDialog() {
     //     this.display = true;
     // }

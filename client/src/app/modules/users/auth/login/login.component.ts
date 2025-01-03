@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../service/auth.service';
 import { MessageService } from 'primeng/api';
@@ -10,6 +10,8 @@ import { MessageService } from 'primeng/api';
 })
 export class LoginComponent {
     @Input() display: boolean = false; // Nhận trạng thái hiển thị từ parent === props vay do
+    @Output() loginSuccess = new EventEmitter<void>()
+    @ViewChild('loginButton') loginButton!: ElementRef;
 
     username: string = '';
     password: string = '';
@@ -35,6 +37,7 @@ export class LoginComponent {
                     detail: 'Login successfully.',
                 });
                 this.display = false;
+                this.loginSuccess.emit();
             },
             error: (err) => {
                 console.error('Login failed:', err);
@@ -46,5 +49,12 @@ export class LoginComponent {
                 this.error = err.message;
             },
         });
+    }
+
+
+    handleInput(): void {
+        if (this.username && this.password) {
+            this.loginButton.nativeElement.focus();
+        }
     }
 }

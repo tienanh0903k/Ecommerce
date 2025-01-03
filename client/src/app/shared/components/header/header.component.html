@@ -24,7 +24,7 @@
     </div>
 </p-toolbar>
 
-<app-login [display]="display"></app-login>
+<app-login [display]="display" (loginSuccess)="handleLoginSuccess()"></app-login>
 
 <p-carousel [value]="images" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000"
     [responsiveOptions]="responsiveOptions" [style]="{'max-width': '100%'}">
