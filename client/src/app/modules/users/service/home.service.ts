@@ -6,24 +6,12 @@ import { AuthService } from "./auth.service";
 @Injectable({
     providedIn: 'root'
 })
-export class HomeService implements OnInit {
+export class HomeService  {
     constructor(
         private http: HttpClientService,
-        private authService: AuthService
     ) {}
 
-    ngOnInit(): void {
-        if (!this.authService.isExistUser) {
-            this.authService.getAllUsers().subscribe({
-                next: (response) => {
-                    console.log(response);
-                },
-                error: (error) => {
-                    console.log(error);
-                }
-            });
-        }
-    }
+
 
     getProduct(): Observable<any> {
         return this.http.get('products');
