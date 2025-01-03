@@ -2,6 +2,7 @@ import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
+import { AuthGuard } from './core/guard/auth.guard';
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import { AppLayoutComponent } from './layout/app.layout.component';
                 // Route chính cho admin
                 {
                     path: 'admin',
+                    canActivate: [AuthGuard],
                     component: AppLayoutComponent,
                     children: [
                         {
