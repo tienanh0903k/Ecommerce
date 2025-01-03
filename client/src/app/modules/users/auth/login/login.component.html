@@ -1,15 +1,26 @@
-<p-dialog [(visible)]="display" header="Login" [modal]="true" [closable]="true" [resizable]="false" [draggable]="false" [style]="{width: '30vw'}">
-    <div class="p-fluid">
-      <div class="p-field">
-        <label for="username">Username</label>
-        <input id="username" type="text" pInputText />
-      </div>
-      <div class="p-field">
-        <label for="password">Password</label>
-        <input id="password" type="password" pInputText />
-      </div>
-      <div class="p-field">
-        <button pButton type="button" label="Login" icon="pi pi-check" class="p-button" style="width: 100%;"></button>
-      </div>
+<p-dialog [(visible)]="display" header="Login" [modal]="true" [closable]="true" [resizable]="false" [draggable]="false"
+    [style]="{width: '40vw'}">
+    <div class="p-fluid grid formgrid">
+        <!-- Username -->
+        <div class="col-12">
+            <label for="username" class="block text-900 font-medium mb-2">Username</label>
+            <input id="username" [(ngModel)]="username" name="username" type="text" pInputText class="w-full" />
+        </div>
+
+        <!-- Password -->
+        <div class="col-12">
+            <label for="password" class="block text-900 font-medium mb-2">Password</label>
+            <input id="password" [(ngModel)]="password" name="password" type="password" pInputText class="w-full" />
+        </div>
+
+        <!-- Login Button -->
+        <div class="col-12 flex justify-content-center mt-3">
+            <button pButton type="button" (click)="login()" label="Login" icon="pi pi-check"
+                class="p-button w-full"></button>
+        </div>
     </div>
-  </p-dialog>
+</p-dialog>
+
+
+<p-toast></p-toast>
+

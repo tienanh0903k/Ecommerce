@@ -25,10 +25,8 @@ export class HomeComponent {
             this.products = products;
         });
 
-        if (!this.authService.isExistUser) {
-            this.authService.getAllUsers().subscribe((users) => {
-                console.log('Users from API:', users);
-            });
-        }
+        this.authService.getAllUsers().subscribe((users) => {
+            console.log('Users from API:', users);
+        });
     }
 }

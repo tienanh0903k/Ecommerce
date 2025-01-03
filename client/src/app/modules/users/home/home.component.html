@@ -2,6 +2,9 @@
     <div class="product-page__header">
         <h1>San phan moi nhat</h1>
     </div>
+    <div class="product-page__container">
+        <img class="moving-image" src="https://i.pinimg.com/originals/bb/2a/93/bb2a93a4533db85e948abb3e86debcf5.jpg" alt="Moving Image" />
+    </div>
     <div class="product-page__content">
         <div class="product-card" *ngFor="let product of products">
             <div class="product-card__image">
@@ -16,9 +19,3 @@
         </div>
     </div>
 </div>
-
-<!-- <app-login *ngIf="showLogin"></app-login> -->
-<!-- 'app-login' is not a known element:
-1. If 'app-login' is an Angular component, then verify that it is part of this module.
-2. If 'app-login' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@NgModule.schemas' of this component to suppress this message.ngtsc(-998001)
-home.component.ts(9, 1): Error occurs in the template of component HomeComponent. -->

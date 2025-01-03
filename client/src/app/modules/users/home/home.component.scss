@@ -1,7 +1,5 @@
 .product-page__header {
     padding: 20px;
-    border-bottom: 1px solid #e5e5e5;
-
     h1 {
         text-align: center;
         font-size: 24px;
@@ -78,3 +76,39 @@
     }
 }
 
+
+.product-page__container {
+    position: relative;
+    width: 80%;
+    height: 10vh;
+    overflow: hidden;
+    border-bottom: 1px solid #bebebe;
+    margin: 0 auto;
+}
+
+.moving-image {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 60%;
+    /* Căn giữa theo chiều dọc */
+    left: -300px;
+    /* Bắt đầu ngoài màn hình */
+    transform: translateY(-50%);
+    /* Căn chỉnh hình ảnh */
+    animation: moveRight 10s linear infinite;
+    /* Hiệu ứng di chuyển */
+    z-index: 99;
+}
+
+@keyframes moveRight {
+    0% {
+        left: -300px;
+        /* Bắt đầu ngoài màn hình bên trái */
+    }
+
+    100% {
+        left: 100%;
+        /* Kết thúc ngoài màn hình bên phải */
+    }
+}

@@ -1,36 +1,36 @@
 <p-toolbar>
     <div class="p-toolbar-group-left">
-      <img src="https://static.vecteezy.com/system/resources/previews/016/471/452/original/abstract-modern-ecommerce-logo-ecommerce-logo-design-shop-logo-design-template-creative-ecommerce-logo-vector.jpg"
-           alt="Logo" height="40" style="margin-right: 10px;">
-      <span style="font-size: 1.5rem; font-weight: bold;">Shopper</span>
+        <img src="https://static.vecteezy.com/system/resources/previews/016/471/452/original/abstract-modern-ecommerce-logo-ecommerce-logo-design-shop-logo-design-template-creative-ecommerce-logo-vector.jpg"
+            alt="Logo" height="40" style="margin-right: 10px;">
+        <span style="font-size: 1.5rem; font-weight: bold;">Shopper</span>
     </div>
 
     <div class="p-toolbar-group-right">
-      <button pButton label="Cart" icon="pi pi-shopping-cart" class="p-button-text" style="position: relative;">
-        <span class="p-badge" style="position: absolute; top: -5px; right: -10px;" [ngClass]="'p-badge-danger'">
-            1
-        </span>
-      </button>
-      <button pButton label="Login" icon="pi pi-user" class="p-button-text" (click)="toggleLogin()"></button>
-        <button pButton label="Sign Up" icon="pi pi-user-plus" class="p-button-text"></button>
+        <!-- <button pButton label="Cart" icon="pi pi-shopping-cart" class="p-button-text" style="position: relative;">
+            <span class="p-badge" style="position: absolute; top: -5px; right: -10px;" [ngClass]="'p-badge-danger'">
+                1
+            </span>
+        </button> -->
+
+        <ng-container *ngIf="currentUser; else notLoggedIn">
+            <span class="p-mr-3">Welcome, {{ currentUser.username }}</span>
+            <button pButton label="Logout" icon="pi pi-sign-out" class="p-button-text" (click)="logout()"></button>
+        </ng-container>
+
+        <ng-template #notLoggedIn>
+            <button pButton label="Login" icon="pi pi-user" class="p-button-text" (click)="toggleLogin()"></button>
+            <button pButton label="Sign Up" icon="pi pi-user-plus" class="p-button-text"></button>
+        </ng-template>
     </div>
 </p-toolbar>
 
 <app-login [display]="display"></app-login>
 
-<p-carousel
-    [value]="images"
-    [numVisible]="1"
-    [numScroll]="1"
-    [circular]="true"
-    [autoplayInterval]="3000"
-    [responsiveOptions]="responsiveOptions"
-    [style]="{'max-width': '100%'}"
-    >
+<p-carousel [value]="images" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="3000"
+    [responsiveOptions]="responsiveOptions" [style]="{'max-width': '100%'}">
     <ng-template let-image pTemplate="item">
-      <div style="text-align: center;">
-        <img [src]="image" alt="Slider Image" style="max-width: 100%; max-height: 400px; margin: auto;">
-      </div>
+        <div style="text-align: center;">
+            <img [src]="image" alt="Slider Image" style="max-width: 100%; max-height: 400px; margin: auto;">
+        </div>
     </ng-template>
 </p-carousel>
-
