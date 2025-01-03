@@ -12,6 +12,7 @@ export class HeaderComponent {
     responsiveOptions: any[] = [];
 
     currentUser: any = null;
+    value: string = '';
 
     constructor(private authService: AuthService) {
         this.images = [
@@ -39,6 +40,11 @@ export class HeaderComponent {
 
     ngOnInit(): void {
         this.currentUser = this.authService.getCurrentUser();
+    }
+
+    onInputChanged(e: any): void {
+        const value = e.target.value;
+        console.log('Changed value:', value);
     }
 
     handleLoginSuccess(): void {

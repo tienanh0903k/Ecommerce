@@ -12,8 +12,19 @@
             </span>
         </button> -->
 
+        <div class="input-group" style="margin-right: 20px;">
+            <input type="text" pInputText [(ngModel)]="value" placeholder="Search" class="p-inputtext-sm"
+                style="margin-right: 20px;" (input)="onInputChanged($event)" />
+            <i class="pi pi-search" style="color: var(--primary-color)"></i>
+        </div>
+
+
+
+
+
+
         <ng-container *ngIf="currentUser; else notLoggedIn">
-            <span class="p-mr-3">Welcome, {{ currentUser.username }}</span>
+            <span class="p-mr-3">{{ currentUser.username }}</span>
             <button pButton label="Logout" icon="pi pi-sign-out" class="p-button-text" (click)="logout()"></button>
         </ng-container>
 

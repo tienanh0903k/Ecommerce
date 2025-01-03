@@ -43,7 +43,46 @@
         "password": "123",
         "role": 0 
       }
-    ]
+    ],
+
+    "detailProducts": [
+    {
+      "id": 1,
+      "product_id": 1,
+      "color": "Red",
+      "size": "S",
+      "image_url": "https://example.com/tshirt_red_s.jpg",
+      "price": 12.00,
+      "stock": 100
+    },
+    {
+      "id": 2,
+      "product_id": 1,
+      "color": "Red",
+      "size": "M",
+      "image_url": "https://example.com/tshirt_red_m.jpg",
+      "price": 12.00,
+      "stock": 50
+    },
+    {
+      "id": 3,
+      "product_id": 1,
+      "color": "Blue",
+      "size": "S",
+      "image_url": "https://example.com/tshirt_blue_s.jpg",
+      "price": 12.00,
+      "stock": 70
+    },
+    {
+      "id": 4,
+      "product_id": 2,
+      "color": "Blue",
+      "size": "M",
+      "image_url": "https://example.com/hoodie_blue_m.jpg",
+      "price": 22.00,
+      "stock": 30
+    }
+  ]
 }
 
 
