@@ -6,22 +6,12 @@
     </div>
 
     <div class="p-toolbar-group-right">
-        <!-- <button pButton label="Cart" icon="pi pi-shopping-cart" class="p-button-text" style="position: relative;">
-            <span class="p-badge" style="position: absolute; top: -5px; right: -10px;" [ngClass]="'p-badge-danger'">
-                1
-            </span>
-        </button> -->
 
         <div class="input-group" style="margin-right: 20px;">
             <input type="text" pInputText [(ngModel)]="value" placeholder="Search" class="p-inputtext-sm"
                 style="margin-right: 20px;" (input)="onInputChanged($event)" />
             <i class="pi pi-search" style="color: var(--primary-color)"></i>
         </div>
-
-
-
-
-
 
         <ng-container *ngIf="currentUser; else notLoggedIn">
             <span class="p-mr-3">{{ currentUser.username }}</span>
