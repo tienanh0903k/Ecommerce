@@ -3,6 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { HomeService } from '../service/home.service';
 import { LoginComponent } from '../auth/login/login.component';
 import { AuthService } from '../service/auth.service';
+import { IProduct } from 'src/app/shared/types/product.interface';
 
 @Component({
     selector: 'app-home',
@@ -12,7 +13,7 @@ import { AuthService } from '../service/auth.service';
     styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-    products: any[] = [];
+    products: IProduct[] = [];
 
     constructor(
         private homeService: HomeService,

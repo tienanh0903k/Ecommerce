@@ -11,9 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@fastify/cors": "^10.0.2",
+    "@fastify/cors": "^8.5.0",
     "dotenv": "^16.4.7",
-    "fastify": "^5.2.0",
+    "fastify": "^4.29.0",
     "fastify-cors": "^6.1.0",
     "fastify-mongoose": "^0.3.0",
     "mongoose": "^8.9.3"

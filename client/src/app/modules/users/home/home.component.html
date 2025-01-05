@@ -8,7 +8,7 @@
     <div class="product-page__content">
         <div class="product-card" *ngFor="let product of products">
             <div class="product-card__image">
-                <img [src]="product.image" alt="product image">
+                <img [src]="product.mainImage" alt="product image">
             </div>
             <div class="product-card__info">
                 <h2>{{ product.name }}</h2>
