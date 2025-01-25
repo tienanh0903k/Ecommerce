@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { NotfoundComponent } from './demo/components/notfound/notfound.component';
 import { AppLayoutComponent } from './layout/app.layout.component';
 import { AuthGuard } from './core/guard/auth.guard';
+import { ProductComponent } from './modules/admin/product/product.component';
 
 @NgModule({
     imports: [
@@ -30,6 +31,12 @@ import { AuthGuard } from './core/guard/auth.guard';
                                     './demo/components/dashboard/dashboard.module'
                                 ).then((m) => m.DashboardModule),
                         },
+
+                        {
+                            path: 'products',
+                            component: ProductComponent,
+                        },
+
                         {
                             path: 'uikit',
                             loadChildren: () =>
@@ -100,8 +107,8 @@ import { AuthGuard } from './core/guard/auth.guard';
             ],
             {
                 scrollPositionRestoration: 'enabled', // Giữ lại vị trí cuộn
-                anchorScrolling: 'enabled',          // Kích hoạt cuộn đến anchor
-                onSameUrlNavigation: 'reload',       // Tải lại nếu truy cập cùng URL
+                anchorScrolling: 'enabled', // Kích hoạt cuộn đến anchor
+                onSameUrlNavigation: 'reload', // Tải lại nếu truy cập cùng URL
             }
         ),
     ],

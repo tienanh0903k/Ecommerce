@@ -3,15 +3,19 @@ import { CommonModule } from '@angular/common';
 import { AppLayoutModule } from 'src/app/layout/app.layout.module';
 import { RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
+import { ProductComponent } from './product/product.component';
+import { PrimeNgModule } from 'src/app/shared/prime-ng/prime-ng.module';
+import { TableComponent } from './components/table/table.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [AdminComponent, ProductComponent, TableComponent],
   imports: [
     CommonModule,
     AppLayoutModule,
-    RouterModule
+    RouterModule,
+    PrimeNgModule
   ],
   exports: [AdminComponent]
 })

@@ -24,7 +24,8 @@ import { MessageService } from 'primeng/api';
         TableModule,
         DialogModule,
         CarouselModule,
-        ToastModule
+        ToastModule,
+        TableModule
     ],
     providers: [MessageService]
 })

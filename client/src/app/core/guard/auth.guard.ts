@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
     const currentUser = this.getCurrentUser();
 
-    if (!currentUser || currentUser.role !== 1) {
+    if (!currentUser || currentUser.role != 1) {
     //   alert('Access denied! Admins only.');
       this.router.navigate(['/']);
       return false;
