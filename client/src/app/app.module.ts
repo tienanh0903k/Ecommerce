@@ -15,13 +15,14 @@ import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminModule } from './modules/admin/admin.module';
 @NgModule({
     declarations: [
         AppComponent,
         NotfoundComponent
-    
+
     ],
-    imports: [AppRoutingModule, AppLayoutModule, ReactiveFormsModule],
+    imports: [AppRoutingModule, AppLayoutModule, ReactiveFormsModule, AdminModule],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService,

@@ -2,7 +2,10 @@
   [data]="products"
   [columns]="columns"
   [paginator]="true"
-  [rows]="5"
-  [sortField]="'name'"
-  [sortOrder]="1"
+  [rows]="10"
+  sortField="name"
+  sortOrder="1"
+  (edit)="onEdit($event)"
+  (delete)="onDelete($event)"
 ></app-table>
+<h1>Product</h1>
