@@ -3,11 +3,17 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrl: './product.component.scss'
+  styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
   products: any[] = [];
   columns: { field: string; header: string }[] = [];
+  categories: any[] = [];
+
+  // Input data
+  searchText: string = ''; // Giá trị tìm kiếm
+  selectedCategory: string = ''; // Thể loại được chọn
+  selectedTime: string = ''; // Thời gian được chọn
 
   ngOnInit() {
     this.columns = [
@@ -24,6 +30,13 @@ export class ProductComponent implements OnInit {
       { id: 4, name: 'Watch', price: 200, category: 'Accessories' },
       { id: 5, name: 'Bag', price: 70, category: 'Fashion' }
     ];
+
+    this.categories = [
+        { label: 'Tất cả', value: '' },
+        { label: 'Electronics', value: 'Electronics' },
+        { label: 'Fashion', value: 'Fashion' },
+        { label: 'Accessories', value: 'Accessories' }
+      ];
   }
 
   onEdit(row: any) {
@@ -33,5 +46,12 @@ export class ProductComponent implements OnInit {
   onDelete(row: any) {
     console.log('Delete:', row);
   }
-}
 
+  handleSearch() {
+    console.log('Search:', this.searchText);
+  }
+
+  submitSearch() {
+    console.log('Search (on submit):', this.searchText, this.selectedCategory);
+  }
+}

@@ -14,7 +14,13 @@
         </div>
 
         <ng-container *ngIf="currentUser; else notLoggedIn">
-            <span class="p-mr-3">{{ currentUser.username }}</span>
+            <span
+                class="p-mr-3 cursor-pointer"
+                (click)="userMenu.toggle($event)"
+            >
+                {{ currentUser.username }}
+            </span>
+            <p-menu #userMenu [model]="userOptions" popup="true" appendTo="body"></p-menu>
             <button pButton label="Logout" icon="pi pi-sign-out" class="p-button-text" (click)="logout()"></button>
         </ng-container>
 

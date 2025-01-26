@@ -1,11 +1,29 @@
-<app-table
-  [data]="products"
-  [columns]="columns"
-  [paginator]="true"
-  [rows]="10"
-  sortField="name"
-  sortOrder="1"
-  (edit)="onEdit($event)"
-  (delete)="onDelete($event)"
-></app-table>
-<h1>Product</h1>
+<p-panel header="Tìm kiếm">
+    <div class="field-search">
+        <!-- Ô tìm kiếm -->
+        <span class="p-input-icon-left">
+            <i class="pi pi-search"></i>
+            <input type="text" pInputText [(ngModel)]="searchText" placeholder="Tìm kiếm sản phẩm..."
+                (input)="handleSearch()" />
+        </span>
+
+        <!-- Dropdown chọn loại -->
+        <p-dropdown [options]="categories" [(ngModel)]="selectedCategory" placeholder="Chọn loại sản phẩm"></p-dropdown>
+
+        <!-- Nút Submit -->
+        <button pButton type="button" label="Submit" class="p-button-outlined" (click)="submitSearch()"></button>
+    </div>
+</p-panel>
+
+<!-- Khoảng cách giữa panel -->
+<div class="mt-3"></div>
+
+<!-- Panel cho phần bảng -->
+<div class="mb-3 flex justify-content-end">
+    <button pButton type="button" label="Thêm mới" class="p-button-raised p-button-primary"></button>
+</div>
+<p-panel header="Danh sách sản phẩm">
+    <!-- Bảng danh sách sản phẩm -->
+    <app-table [data]="products" [columns]="columns" [paginator]="true" [rows]="10" sortField="name" sortOrder="1"
+        (edit)="onEdit($event)" (delete)="onDelete($event)"></app-table>
+</p-panel>

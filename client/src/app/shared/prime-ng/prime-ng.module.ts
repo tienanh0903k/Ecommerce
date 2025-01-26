@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { CarouselModule } from 'primeng/carousel';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
     imports: [CommonModule, CarouselModule],
@@ -25,7 +26,8 @@ import { MessageService } from 'primeng/api';
         DialogModule,
         CarouselModule,
         ToastModule,
-        TableModule
+        TableModule,
+        MenuModule
     ],
     providers: [MessageService]
 })

@@ -6,10 +6,12 @@ import { AdminComponent } from './admin.component';
 import { ProductComponent } from './product/product.component';
 import { PrimeNgModule } from 'src/app/shared/prime-ng/prime-ng.module';
 import { TableComponent } from './components/table/table.component';
+import { FormsModule } from '@angular/forms';
+import { PanelModule } from 'primeng/panel';
 
 @NgModule({
     declarations: [AdminComponent, ProductComponent, TableComponent],
-    imports: [CommonModule, AppLayoutModule, RouterModule, PrimeNgModule],
+    imports: [CommonModule, AppLayoutModule, RouterModule, PrimeNgModule, FormsModule,PanelModule],
     exports: [AdminComponent, TableComponent ]
 })
 export class AdminModule {}
