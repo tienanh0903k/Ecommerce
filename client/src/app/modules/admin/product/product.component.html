@@ -20,10 +20,25 @@
 
 <!-- Panel cho phần bảng -->
 <div class="mb-3 flex justify-content-end">
-    <button pButton type="button" label="Thêm mới" class="p-button-raised p-button-primary"></button>
+    <button
+        pButton
+        type="button"
+        label="Thêm mới"
+        class="p-button-raised p-button-primary"
+        (click)="openDialog()">
+    </button>
 </div>
 <p-panel header="Danh sách sản phẩm">
     <!-- Bảng danh sách sản phẩm -->
     <app-table [data]="products" [columns]="columns" [paginator]="true" [rows]="10" sortField="name" sortOrder="1"
-        (edit)="onEdit($event)" (delete)="onDelete($event)"></app-table>
+        (edit)="openDialog($event)" (delete)="onDelete($event)"></app-table>
 </p-panel>
+
+
+<app-product-dialog
+  [(display)]="dialogVisible"
+  [header]="dialogHeader"
+  [product]="selectedProduct"
+  [categories]="categories"
+  (dialogClosed)="handleDialogClosed()"
+></app-product-dialog>

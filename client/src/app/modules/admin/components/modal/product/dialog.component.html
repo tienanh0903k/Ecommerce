@@ -1,0 +1,68 @@
+<p-dialog
+  [(visible)]="display"
+  [header]="header"
+  [closable]="true"
+  [modal]="true"
+  [style]="{ width: '500px' }"
+  [baseZIndex]="10000"
+  (onHide)="closeDialog()"
+
+>
+<!-- (onHide)="onDialogClose()" -->
+  <!-- Form để thêm hoặc chỉnh sửa sản phẩm -->
+  <form class="p-fluid">
+    <div class="field">
+      <label for="productName">Tên sản phẩm</label>
+      <input
+        id="productName"
+        type="text"
+        pInputText
+        [(ngModel)]="product.name"
+        name="productName"
+        placeholder="Nhập tên sản phẩm"
+      />
+    </div>
+
+    <div class="field">
+      <label for="productPrice">Giá</label>
+      <input
+        id="productPrice"
+        type="number"
+        pInputText
+        [(ngModel)]="product.price"
+        name="productPrice"
+        placeholder="Nhập giá sản phẩm"
+      />
+    </div>
+
+    <div class="field">
+      <label for="productCategory">Loại sản phẩm</label>
+      <p-dropdown
+        [options]="categories"
+        [(ngModel)]="product.category"
+        name="productCategory"
+        placeholder="Chọn loại sản phẩm"
+      ></p-dropdown>
+    </div>
+  </form>
+
+  <!-- Buttons -->
+  <div class="p-d-flex p-jc-end">
+    <button
+      pButton
+      type="button"
+      label="Hủy"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="closeDialog()"
+    ></button>
+    <button
+      pButton
+      type="button"
+      label="Lưu"
+      icon="pi pi-check"
+      class="p-button-primary"
+      (click)="saveProduct()"
+    ></button>
+  </div>
+</p-dialog>

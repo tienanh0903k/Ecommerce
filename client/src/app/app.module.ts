@@ -14,7 +14,7 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './modules/admin/admin.module';
 @NgModule({
     declarations: [
@@ -22,7 +22,7 @@ import { AdminModule } from './modules/admin/admin.module';
         NotfoundComponent
 
     ],
-    imports: [AppRoutingModule, AppLayoutModule, ReactiveFormsModule, AdminModule],
+    imports: [AppRoutingModule, AppLayoutModule, ReactiveFormsModule, FormsModule, AdminModule],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService,

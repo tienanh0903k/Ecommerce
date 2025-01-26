@@ -8,10 +8,20 @@ import { PrimeNgModule } from 'src/app/shared/prime-ng/prime-ng.module';
 import { TableComponent } from './components/table/table.component';
 import { FormsModule } from '@angular/forms';
 import { PanelModule } from 'primeng/panel';
+import { ProductDialogComponent } from './components/modal/product/dialog.component';
+import { DialogsModule } from './components/modal/dialog.module';
 
 @NgModule({
     declarations: [AdminComponent, ProductComponent, TableComponent],
-    imports: [CommonModule, AppLayoutModule, RouterModule, PrimeNgModule, FormsModule,PanelModule],
-    exports: [AdminComponent, TableComponent ]
+    imports: [
+        CommonModule,
+        AppLayoutModule,
+        RouterModule,
+        PrimeNgModule,
+        FormsModule,
+        PanelModule,
+        DialogsModule,
+    ],
+    exports: [AdminComponent, TableComponent],
 })
 export class AdminModule {}

@@ -15,6 +15,12 @@ export class ProductComponent implements OnInit {
   selectedCategory: string = ''; // Thể loại được chọn
   selectedTime: string = ''; // Thời gian được chọn
 
+
+
+  dialogVisible: boolean = false; // Trạng thái hiển thị dialog
+  dialogHeader: string = ''; // Tiêu đề dialog
+  selectedProduct: any = {}; // Sản phẩm được chỉnh sửa hoặc thêm mới
+
   ngOnInit() {
     this.columns = [
       { field: 'id', header: 'Product ID' },
@@ -53,5 +59,23 @@ export class ProductComponent implements OnInit {
 
   submitSearch() {
     console.log('Search (on submit):', this.searchText, this.selectedCategory);
+  }
+
+  openDialog(row?: any) {
+    if (row && row.id) {
+      // Nếu có ID => Chỉnh sửa
+      this.dialogHeader = 'Chỉnh sửa sản phẩm';
+      this.selectedProduct = { ...row }; // Copy dữ liệu sản phẩm để chỉnh sửa
+    } else {
+      // Nếu không có ID => Thêm mới
+      this.dialogHeader = 'Thêm sản phẩm mới';
+      this.selectedProduct = { name: '', price: 0, category: '' }; // Sản phẩm rỗng
+    }
+    this.dialogVisible = true; // Hiển thị dialog
+  }
+
+  handleDialogClosed() {
+    this.dialogVisible = false; // Đặt lại trạng thái dialog
+    console.log('Dialog đã đóng');
   }
 }
