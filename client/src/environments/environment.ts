@@ -5,6 +5,20 @@
 export const environment = {
     production: false,
     baseApiUrl: 'http://localhost:3000',
+    firebase: {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_AUTH_DOMAIN",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_STORAGE_BUCKET",
+        messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    },
+    aws: {
+        bucketName: 'cv-project-public-bucket',
+        region: 'ap-southeast-2',
+        accessKeyId: 'AKIATG6MGKDKPYEL3OG2',
+        secretAccessKey: '176aO/eSc3XkZxcAHHKkU6zSv8uXYaPk5ihP9J1q',
+      },
 };
 
 /*

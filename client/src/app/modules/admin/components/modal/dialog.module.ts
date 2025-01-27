@@ -6,6 +6,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { ProductDialogComponent } from './product/dialog.component';
+import { PanelModule } from 'primeng/panel';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
     declarations: [ProductDialogComponent],
@@ -16,6 +18,8 @@ import { ProductDialogComponent } from './product/dialog.component';
         DropdownModule,
         InputTextModule,
         ButtonModule,
+        PanelModule,
+        TableModule
     ],
     exports: [ProductDialogComponent],
 })
