@@ -16,12 +16,15 @@ export class ProductDialogComponent {
   @Output() dialogClosed = new EventEmitter<void>();
   @Output() productSaved = new EventEmitter<any>();
 
+  sizeQuantityList: { size: string; quantity: number }[] = [];
   productDetails: any[] = [];
   detail: any = {};
   selectedFile: File | null = null;
   uploadedImageUrl: string | null = null;
 
   uploadProgress: number = 0;
+  size: string = '';
+  quantity: number = 0;
 
   colorOptions = [
     { label: 'Đỏ', value: 'Red' },
@@ -37,90 +40,33 @@ export class ProductDialogComponent {
     { label: 'XL', value: 'XL' },
   ];
 
-  constructor(private uploadService: UploadService,
-    private http: HttpClient
-  ) {}
+  constructor(private uploadService: UploadService, private http: HttpClient) {
+    console.log(this.size);
+  }
 
   closeDialog() {
     this.display = false;
     this.dialogClosed.emit();
   }
 
+  handleSize() {
+    console.log(this.size);
+  }
+
   onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
+
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.uploadedImageUrl = e.target.result; // Gán blob URL cho uploadedImageUrl
+      };
+      reader.readAsDataURL(file); // Đọc file dưới dạng Data URL
     }
   }
 
-//   uploadImage() {
-//     if (!this.selectedFile) {
-//       alert('Vui lòng chọn file trước!');
-//       return;
-//     }
-
-//     const fileName = this.selectedFile.name;
-//     const fileType = this.selectedFile.type;
-//     console.log(fileName, fileType);
-
-//     this.uploadService.getPresignedUrl(fileName, fileType).subscribe({
-//       next: (response) => {
-//         const uploadUrl = response.url;
-
-//         // Upload file đến S3
-//         this.uploadService.uploadFileToS3(uploadUrl, this.selectedFile!).subscribe({
-//           next: () => {
-//             this.uploadedImageUrl = uploadUrl.split('?')[0]; // Lấy URL của ảnh đã tải lên
-//             this.detail.image = this.uploadedImageUrl; // Gắn URL ảnh vào detail
-//             console.log('Upload thành công:', this.uploadedImageUrl);
-//           },
-//           error: (err) => {
-//             console.error('Upload thất bại:', err);
-//           },
-//         });
-//       },
-//       error: (err) => {
-//         console.error('Lấy pre-signed URL thất bại:', err);
-//       },
-//     });
-//   }
-// uploadImage() {
-//     if (!this.selectedFile) {
-//       alert('Vui lòng chọn file!');
-//       return;
-//     }
-
-//     const fileName = this.selectedFile.name;
-//     const fileType = this.selectedFile.type;
-
-//     // Gọi API backend để lấy Pre-Signed URL
-//     this.http
-//       .post<{ url: string }>('http://localhost:3000/api/s3url', { fileName, fileType })
-//       .subscribe({
-//         next: (response) => {
-//           const presignedUrl = response.url;
-
-//           // Tải file lên S3 bằng cách sử dụng Pre-Signed URL
-//           this.http
-//             .put(presignedUrl, this.selectedFile, {
-//               headers: { 'Content-Type': fileType },
-//             })
-//             .subscribe({
-//               next: () => {
-//                 console.log('Upload thành công!');
-//               },
-//               error: (err) => {
-//                 console.error('Upload thất bại:', err);
-//               },
-//             });
-//         },
-//         error: (err) => {
-//           console.error('Lấy Pre-Signed URL thất bại:', err);
-//         },
-//       });
-//   }
-
-uploadImage() {
+  uploadImage() {
     if (!this.selectedFile) {
       alert('Vui lòng chọn file!');
       return;
@@ -129,29 +75,50 @@ uploadImage() {
     this.uploadService.uploadFile(this.selectedFile).subscribe({
       next: (event: any) => {
         if (event.type === HttpEventType.UploadProgress) {
-          // Tính toán % tiến trình tải lên
           this.uploadProgress = Math.round((100 * event.loaded) / event.total!);
         } else if (event instanceof HttpResponse) {
-          // Xử lý kết quả khi tải lên thành công
-          alert('Upload thành công!');
-          console.log('Kết quả:', event.body);
+          this.uploadedImageUrl = event.body.file.url; // Lấy URL từ API
+          this.detail.image = this.uploadedImageUrl; // Gán URL ảnh vào chi tiết
+          console.log('Upload thành công:', this.uploadedImageUrl);
         }
       },
       error: (err) => {
         console.error('Lỗi tải lên:', err);
-        // alert('Tải lên thất bại!');
+        alert('Tải lên thất bại!');
       },
     });
   }
 
-  addDetail() {
-    // if (!this.detail.color || !this.detail.size || !this.detail.image || !this.detail.stock) {
-    //   alert('Vui lòng nhập đầy đủ chi tiết sản phẩm!');
-    //   return;
-    // }
+  addSizeQuantity() {
+    console.log("----",this.size, this.quantity)//---- <empty string>
 
+    const existingIndex = this.sizeQuantityList.findIndex((item) => item.size === this.size);
+    if (existingIndex !== -1) {
+      this.sizeQuantityList[existingIndex].quantity += this.quantity;
+    } else {
+      this.sizeQuantityList.push({ size: this.size, quantity: this.quantity });
+    }
+
+    this.size = '';
+    this.quantity = 0;
+  }
+
+  removeSizeQuantity(index: number) {
+    this.sizeQuantityList.splice(index, 1);
+  }
+
+  addDetail() {
+    if (!this.detail.color || !this.detail.image || this.sizeQuantityList.length === 0) {
+      alert('Vui lòng nhập đầy đủ thông tin chi tiết sản phẩm!');
+      return;
+    }
+
+    this.detail.sizeQuantity = [...this.sizeQuantityList];
     this.productDetails.push({ ...this.detail });
-    this.detail = {}; // Reset chi tiết sản phẩm
+
+    this.detail = {};
+    this.sizeQuantityList = [];
+    this.uploadedImageUrl = null; // Reset URL ảnh
   }
 
   deleteDetail(detail: any) {
@@ -169,9 +136,9 @@ uploadImage() {
       return;
     }
 
-    this.product.details = this.productDetails; // Gắn chi tiết vào sản phẩm
-    console.log('----Product saved:', this.product);
-    this.productSaved.emit(this.product); // Phát sự kiện lưu sản phẩm
+    this.product.details = this.productDetails;
+    console.log('Sản phẩm đã lưu:', this.product);
+    this.productSaved.emit(this.product);
     this.display = false;
   }
 }

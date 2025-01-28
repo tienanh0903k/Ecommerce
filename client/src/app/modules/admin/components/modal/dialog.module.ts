@@ -13,13 +13,13 @@ import { TableModule } from 'primeng/table';
     declarations: [ProductDialogComponent],
     imports: [
         CommonModule,
-        FormsModule,
         PrimeDialogModule, // Import DialogModule của PrimeNG
         DropdownModule,
         InputTextModule,
         ButtonModule,
         PanelModule,
-        TableModule
+        TableModule,
+        FormsModule,
     ],
     exports: [ProductDialogComponent],
 })

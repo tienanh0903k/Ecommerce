@@ -64,25 +64,13 @@
           ></p-dropdown>
         </div>
 
-        <!-- Kích thước -->
-        <div class="field p-col-3">
-          <label for="productSize">Kích thước</label>
-          <p-dropdown
-            [options]="sizeOptions"
-            [(ngModel)]="detail.size"
-            name="productSize"
-            placeholder="Chọn kích thước"
-          ></p-dropdown>
-        </div>
-
-        <!-- Chọn ảnh -->
+        <!-- Ảnh sản phẩm -->
         <div class="field p-col-3">
           <label for="productImage">Ảnh</label>
           <input
             id="productImage"
             type="file"
             (change)="onFileSelected($event)"
-            placeholder="Chọn file ảnh"
           />
           <button
             pButton
@@ -92,32 +80,87 @@
             (click)="uploadImage()"
             [disabled]="!selectedFile"
           ></button>
+          <div *ngIf="uploadedImageUrl">
+            <h4>Ảnh đã tải lên:</h4>
+            <img [src]="uploadedImageUrl" alt="Uploaded Image" style="max-width: 100%; max-height: 300px;" />
+          </div>
+        </div>
+      </div>
+
+      <p-panel header="Kích thước và số lượng">
+        <!-- Nhập kích thước và số lượng -->
+        <div class="p-grid">
+          <div class="field p-col-5">
+            <label for="size">Kích thước</label>
+            <input
+              id="size"
+              type="text"
+              [(ngModel)]="size"
+              name="size"
+              placeholder="Nhập kích thước (e.g., S, M, L, XL)"
+              class="p-inputtext"
+              (input)="handleSize()"
+            />
+          </div>
+          <div class="field p-col-5">
+            <label for="quantity">Số lượng</label>
+            <input
+              id="quantity"
+              type="number"
+              name="quantity"
+              [(ngModel)]="quantity"
+              placeholder="Nhập số lượng"
+              class="p-inputtext"
+            />
+          </div>
+          <div class="field p-col-2 p-d-flex p-ai-end">
+            <button
+              pButton
+              type="button"
+              label="Thêm"
+              class="p-button-success"
+              (click)="addSizeQuantity()"
+            ></button>
+          </div>
         </div>
 
-        <!-- Tồn kho -->
-        <div class="field p-col-2">
-          <label for="productStock">Tồn kho</label>
-          <input
-            id="productStock"
-            type="number"
-            pInputText
-            [(ngModel)]="detail.stock"
-            name="productStock"
-            placeholder="Tồn kho"
-          />
-        </div>
+        <!-- Hiển thị danh sách kích thước và số lượng -->
+        <p-table [value]="sizeQuantityList" [paginator]="true" [rows]="5" [responsiveLayout]="'scroll'" class="mt-3">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Kích thước</th>
+              <th>Số lượng</th>
+              <th>Hành động</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item let-index="rowIndex">
+            <tr>
+              <td>{{ item.size }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>
+                <button
+                  pButton
+                  type="button"
+                  icon="pi pi-trash"
+                  class="p-button-danger p-button-text"
+                  (click)="removeSizeQuantity(index)"
+                ></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-panel>
 
-        <!-- Nút thêm chi tiết -->
-        <div class="field p-col-1">
-          <label>&nbsp;</label>
-          <button
-            pButton
-            type="button"
-            label="Thêm"
-            class="p-button-success"
-            (click)="addDetail()"
-          ></button>
-        </div>
+
+      <!-- Nút thêm chi tiết -->
+      <div class="field p-col-12 mt-3">
+        <button
+          pButton
+          type="button"
+          label="Thêm chi tiết"
+          class="p-button-success"
+          (click)="addDetail()"
+        ></button>
       </div>
     </form>
 
@@ -127,24 +170,29 @@
       [paginator]="true"
       [rows]="5"
       [responsiveLayout]="'scroll'"
+      class="mt-3"
     >
       <ng-template pTemplate="header">
         <tr>
           <th>Màu sắc</th>
-          <th>Kích thước</th>
+          <th>Kích thước & Số lượng</th>
           <th>Ảnh</th>
-          <th>Tồn kho</th>
           <th>Hành động</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-detail>
         <tr>
           <td>{{ detail.color }}</td>
-          <td>{{ detail.size }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let size of detail.sizeQuantity">
+                {{ size.size }}: {{ size.quantity }}
+              </li>
+            </ul>
+          </td>
           <td>
             <img [src]="detail.image" alt="Ảnh" style="width: 50px; height: 50px;" />
           </td>
-          <td>{{ detail.stock }}</td>
           <td>
             <button
               pButton

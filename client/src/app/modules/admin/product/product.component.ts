@@ -54,7 +54,7 @@ export class ProductComponent implements OnInit {
   }
 
   handleSearch() {
-    console.log('Search:', this.searchText);
+    console.log('Search1:', this.searchText);
   }
 
   submitSearch() {
